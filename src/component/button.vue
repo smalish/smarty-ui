@@ -2,11 +2,11 @@
  * @Author: yangying01
  * @Date: 2020-11-30 14:15:55
  * @LastEditors: yangying01
- * @LastEditTime: 2020-12-01 11:49:05
+ * @LastEditTime: 2020-12-01 14:13:31
 -->
 
 <template>
-    <div class="button-view" :class="[`s-button--${type}`, {'is-plain': plain, 'is-round': round, 'is-circle': circle}]">
+    <div class="button-view" :class="[`s-button--${type}`, {'is-plain': plain, 'is-round': round, 'is-circle': circle, 'is-disabled': disabled}]" @click="clickButton">
       <i v-if="icon" :class="[icon]"></i>
       <span v-if="this.$slots.default"><slot></slot></span>
     </div>
@@ -34,11 +34,24 @@ export default {
     circle: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+
     }
   },
   mounted() {
     console.log(this)
   },
+  methods:{
+    clickButton(e){
+      if(!this.disabled){
+        this.$emit('click')//触发自身click事件
+      }
+      
+    }
+  }
 }
 </script>
 
@@ -93,6 +106,41 @@ export default {
     background-color: #f56c6c;
     border-color: #f56c6c;
   }
+
+  /* 禁用样式-开始 */
+  [class*="s-button--"].is-disabled{
+    color: #c0c4cc;
+    cursor: not-allowed;
+    background-image: none;
+    background-color: #fff;
+    border-color: #ebeef5;
+  }
+  .s-button--primary.is-disabled{
+    color: #fff;
+    background-color: #a0cfff;
+    border-color: #a0cfff;
+  }
+  .s-button--success.is-disabled{
+    color: #fff;
+    background-color: #b3e19d;
+    border-color: #b3e19d;
+  }
+  .s-button--info.is-disabled{
+    color: #fff;
+    background-color: #c8c9cc;
+    border-color: #c8c9cc;
+  }
+  .s-button--warning.is-disabled{
+    color: #fff;
+    background-color: #f3d19e;
+    border-color: #f3d19e;
+  }
+  .s-button--danger.is-disabled{
+    color: #fff;
+    background-color: #fab6b6;
+    border-color: #fab6b6;
+  }
+    /* 禁用样式-结束 */    
 
   .s-button--primary.is-plain {
     color: #409eff;

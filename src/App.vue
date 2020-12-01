@@ -3,12 +3,21 @@
     smarty-ui
     
     <div>
-      <Button>基础</Button>
-      <Button type="primary">基础</Button>
-      <Button type="success">成功</Button>
-      <Button type="info">信息</Button>
-      <Button type="warning">警告</Button>
-      <Button type="danger">警告</Button>
+      <Button @click="clickButton">基础</Button>
+      <Button type="primary" @click="clickButton">基础</Button>
+      <Button type="success" @click="clickButton">成功</Button>
+      <Button type="info" @click="clickButton">信息</Button>
+      <Button type="warning" @click="clickButton">警告</Button>
+      <Button type="danger" @click="clickButton">警告</Button>
+    </div>
+
+    <div>
+      <Button disabled @click="clickButton">基础</Button>
+      <Button disabled type="primary" @click="clickButton">基础</Button>
+      <Button disabled type="success" @click="clickButton">成功</Button>
+      <Button disabled type="info" @click="clickButton">信息</Button>
+      <Button disabled type="warning" @click="clickButton">警告</Button>
+      <Button disabled type="danger" @click="clickButton">警告</Button>
     </div>
 
     <div>
@@ -46,7 +55,7 @@
       <Button type="warning" icon="s-icon-favorite" circle></Button>
       <Button type="danger" icon="s-icon-arrow-right" circle></Button>
     </div>
-    
+
   </div>
 </template>
 
@@ -60,6 +69,11 @@ export default {
   },
   mounted(){
     console.log(this.props)
+  },
+  methods: {
+    clickButton(e){
+      console.log('clickButton')
+    }
   }
 }
 </script>
